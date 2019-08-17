@@ -2,7 +2,6 @@
 function cariMedian(arr) {
 
     var indeks = 0
-    var median = 0
 
     if (arr.length % 2 === 0) {
         indeks = arr.length / 2
@@ -12,7 +11,6 @@ function cariMedian(arr) {
         indeks = (arr.length - 1) / 2
         return (arr[indeks])
     }
-
 }
 
 
