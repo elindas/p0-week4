@@ -1,48 +1,37 @@
-
 function shoppingTime(memberId, money) {
-    var sisa = money;
-    var belanja = [];
+  if (memberId === "" || (memberId === undefined && money === undefined)) {
+    return "Mohon maaf, toko X hanya berlaku untuk member saja";
+  } else if (money < 50000) {
+    return "Mohon maaf, uang tidak cukup";
+  } else {
+    var shop = {
+      memberId: memberId,
+      money: money,
+      listPurchased: [],
+      changeMoney: money
+    };
 
-    for (var i = 0; i < 5; i++) {
-        if (sisa >= 1500000) {
-            belanja.push('Sepatu Stacattu');
-            sisa -= 1500000;
-        } else if (sisa >= 500000) {
-            belanja.push('Baju Zoro');
-            sisa -= 500000;
-        } else if (sisa >= 250000) {
-            belanja.push('Baju H&N');
-            sisa -= 250000;
-        } else if (sisa >= 175000) {
-            belanja.push('Sweater Uniklooh');
-            sisa -= 175000;
-        } else if (sisa >= 50000) {
-            belanja.push('CasingHandphone');
-            sisa -= 50000;
-            break;
-        }
+    var listPurchased = [
+      ["Sepatu brand Stacattu", 1500000],
+      ["Baju brand Zoro", 500000],
+      ["Baju brand H&N", 250000],
+      ["Sweater brand Uniklooh", 175000],
+      ["Casing Handphone", 50000]
+    ];
+
+    for (var i = 0; i < listPurchased.length; i++) {
+      if (shop.changeMoney >= listPurchased[i][1]) {
+        shop.listPurchased.push(listPurchased[i][0]);
+        shop.changeMoney -= listPurchased[i][1];
+      }
     }
 
-
-    var objProduct = {};
-    objProduct.memberId = memberId;
-    objProduct.money = money;
-    objProduct.listPurchased = belanja;
-    objProduct.changeMoney = sisa;
-
-
-    if (memberId === '' || memberId === undefined && money === undefined) {
-        return 'Mohon maaf, toko X hanya berlaku untuk member saja';
-    } else if (money < 50000) {
-        return 'Mohon maaf, uang tidak cukup';
-    }
-
-
-    return objProduct;
+    return shop;
+  }
 }
 
 // TEST CASES
-console.log(shoppingTime('1820RzKrnWn08', 2475000));
+console.log(shoppingTime("1820RzKrnWn08", 2475000));
 //{ memberId: '1820RzKrnWn08',
 // money: 2475000,
 // listPurchased:
@@ -52,12 +41,12 @@ console.log(shoppingTime('1820RzKrnWn08', 2475000));
 //    'Sweater Uniklooh',
 //    'Casing Handphone' ],
 // changeMoney: 0 }
-console.log(shoppingTime('82Ku8Ma742', 170000));
+console.log(shoppingTime("82Ku8Ma742", 170000));
 //{ memberId: '82Ku8Ma742',
 // money: 170000,
 // listPurchased:
 //  [ 'Casing Handphone' ],
 // changeMoney: 120000 }
-console.log(shoppingTime('', 2475000)); //Mohon maaf, toko X hanya berlaku untuk member saja
-console.log(shoppingTime('234JdhweRxa53', 15000)); //Mohon maaf, uang tidak cukup
+console.log(shoppingTime("", 2475000)); //Mohon maaf, toko X hanya berlaku untuk member saja
+console.log(shoppingTime("234JdhweRxa53", 15000)); //Mohon maaf, uang tidak cukup
 console.log(shoppingTime()); ////Mohon maaf, toko X hanya berlaku untuk member saja
