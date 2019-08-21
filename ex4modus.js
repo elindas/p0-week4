@@ -1,8 +1,8 @@
 function cariModus(arr) {
 
-    var count = 0
+    var count = 1
     var max = 0
-    var modus = 0
+    var modus;
     
     for (var i = 0; i < arr.length; i++) {
         for (var j = 0; j < arr.length; j++) {
@@ -14,19 +14,12 @@ function cariModus(arr) {
                 }
             }
         }
-        count= 0
+        count= 1
     }
-
-    var sameNumber = 1
-    for (var x = 1; x < arr.length; x++) {
-        if (arr[0] === arr[x]) {
-            sameNumber++
-        }
-    } 
   
-    if (modus === 0) {
+    if (modus === undefined) {
         return -1;
-    } else if (sameNumber === arr.length) {
+    } else if (max === arr.length) {
         return -1
     } else {
         return modus
@@ -39,3 +32,4 @@ console.log(cariModus([5, 10, 10, 6, 5])); // 5
 console.log(cariModus([10, 3, 1, 2, 5])); // -1
 console.log(cariModus([1, 2, 3, 3, 4, 5])); // 3
 console.log(cariModus([7, 7, 7, 7, 7])); // -1
+
