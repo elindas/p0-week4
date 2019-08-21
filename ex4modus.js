@@ -14,6 +14,7 @@ function cariModus(arr) {
                 }
             }
         }
+        count= 0
     }
 
     var sameNumber = 1
