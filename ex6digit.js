@@ -7,14 +7,15 @@ function digitPerkalianMinimum(angka) {
             faktor.push(String(i) + angka / i)
         }
     }
-
-    var digit = [];
-    for (var j = 0; j < faktor.length; j++) {
-        digit.push(faktor[j].length)
+    
+    var digitMin = faktor[0].length
+    for(var i=0; i<faktor.length; i++){
+        if(faktor[i].length < digitMin){
+            digitMin = faktor[i].length
+        }
     }
 
-    var min = Math.min.apply(Math, digit);
-    return min;
+    return digitMin
 }
 
 
