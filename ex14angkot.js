@@ -15,17 +15,22 @@ function naikAngkot(arrPenumpang) {
         var awal = 0
         var akhir = 0
         for (var j = 0; j < rute.length; j++) {
-            if (arrPenumpang[i][1] === rute[j]) {
-                awal = rute.indexOf(rute[j])
-            } else if (arrPenumpang[i][2] === rute[j]) {
-                akhir = rute.indexOf(rute[j])
+            if (rute.indexOf(arrPenumpang[i][1]) === -1 || rute.indexOf(arrPenumpang[i][2]) === -1) {
+                obj.bayar = "rute tidak ada"
+            } else if (arrPenumpang[i][1] === arrPenumpang[i][2] ) {
+                obj.bayar = "keberangkatan dan tujuan tidak tepat"
+            } else {
+                awal = rute.indexOf(arrPenumpang[i][1])
+                akhir = rute.indexOf(arrPenumpang[i][2])
+                if (awal > akhir) {
+                    obj.bayar = "keberangkatan dan tujuan tidak tepat"
+                } else {
+                    obj.bayar = (akhir - awal) * 2000
+                }
             }
         }
-        obj.bayar = (akhir - awal) * 2000
-        
         result.push(obj)
     }
-
     return result
 }
 
